@@ -1,5 +1,7 @@
 dwm
 *.o
+*.orig
+*.rej
 .ccls-cache/
 
 .vscode/
