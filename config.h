@@ -73,16 +73,32 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+
+static const char *upvol[]   = { "/home/r1v3r/scripts/vol-up.sh",  NULL };
+static const char *downvol[] = { "/home/r1v3r/scripts/vol-down.sh",  NULL };
+static const char *mutevol[] = { "/home/r1v3r/scripts/vol-toggle.sh",  NULL };
+
+static const char *wpcmd[]  = { "/home/r1v3r/scripts/wp-change.sh", NULL };
+
+static const char *suspendcmd[]  = { "/home/r1v3r/scripts/suspend.sh", NULL };
+
 static const char *flameshotcmd[] =	{"flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = flameshotcmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = flameshotcmd } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_bracketleft,          spawn,          {.v = downvol } },
+	{ MODKEY,                       XK_backslash,            spawn,          {.v = mutevol } },
+	{ MODKEY,                       XK_bracketright,         spawn,          {.v = upvol   } },
+	{ MODKEY,                       XK_b,                    spawn,          {.v = wpcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_u,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_e,      rotatestack,    {.i = -1 } },
